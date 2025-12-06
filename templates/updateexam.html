@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_page</title>
+<link rel="stylesheet" href="{% static 'style/updateexam.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+          {% include 'admin_nav.html' %}
+
+        <div class="right_side">
+           
+             <form method="POST" action="{% url 'updateexam'  exam.id  %}">
+        {% csrf_token %}
+      
+        <div >
+            <label for="">exam_name:</label>
+            <input type="text" name="exam_name" value="{{exam.exam_name}}" required>
+
+        </div>
+        <div>
+            <label for="">start_time</label>
+            <input type="time" name="start_time" value="{{exam.start_time|time:'H:i'}}" required>
+        </div>
+        <div>
+            <label for="">end_time:</label>
+            <input type="time" name="end_time"  value="{{exam.end_time|time:'H:i'}}"required>
+        </div>
+         <div >
+            <label for="">description:</label>
+            <input type="text" name="description" value="{{exam.description}}" required>
+
+        </div>
+         <div >
+            <label for="">Exam_fee:</label>
+            <input type="number" name="exam_amount" value="{{exam.exam_amount}}" required>
+
+        </div>
+          <div >
+            <label for="">updated_by:</label>
+            <input type="text" name="updated_by" value="{{exam.updated_by}}" required>
+
+        </div>
+        <div>
+                <label for="">qn_code:</label>
+        <select name="question" id="qn" multiple>
+                    {% for j in qn%}
+                    <option value="{{j.question_code}}"> {{j.question_name}}</option>
+                    {% endfor %}
+                </select>
+        </div>
+    
+        <button>Submit</button>
+
+       
+    </form>
+                
+            </div>
+           
+           
+
+        </div>
+    </section>
+
+        <script>
+            let down=document.getElementsByClassName("down")
+            let bottom=document.getElementsByClassName("bottom")
+            let a=false
+
+            function show(){
+                a=!a
+                if(a==true){
+                    down[0].style='display:unset;transition:all 1s'
+                    down[1].style='display:unset ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom1;animation-duration:1s'
+                    
+                }
+                else{
+                    down[0].style='display:none ;transition:all 1s'
+                    down[1].style='display:none ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom2;animation-duration:1s'
+                   
+                }
+            }
+        </script>
+
+    
+</body>
+</html>

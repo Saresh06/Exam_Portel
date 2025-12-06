@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Dancing+Script:wght@400..700&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karma:wght@300;400;500;600;700&family=Mozilla+Headline:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Gothic+Expanded+One&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+
+section{
+    min-height:100vh;
+    width:100%;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+     background-image: linear-gradient(to top right,#FAF7F3,#D9A299);
+  font-family: "Poppins", sans-serif;
+}
+h1{
+    text-align: center;
+}
+form{
+    display:flex;
+    flex-direction: column;
+    background-color: #DCC5B2;
+    gap:15px;
+ padding: 30px;
+    width:30%;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+    border-radius: 15px;
+   
+}
+input{
+   outline: none;
+    padding:10px;
+    border-radius: 10px;
+    border: none;
+}
+input:focus{
+ border:2px solid #896C6C;
+}
+form div{
+    margin: auto;
+}
+
+form div>input{
+    margin-top:10px;
+    background-color: #B1AB86;
+    color:white;
+    transition: all 1.5s;
+    padding:15px;
+    font-size: 20px;
+    box-shadow: 2px 2px 10px black;
+}
+
+form div>input:active{
+    transform: scale(0.5);
+}

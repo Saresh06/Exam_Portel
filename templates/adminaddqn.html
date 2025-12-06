@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="{% static 'style/adminaddqn.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+     <section>
+           {% include 'admin_nav.html' %}
+
+
+
+        <div class="right_side">
+
+        <form method="POST" action="{% url 'adminaddqn' %}">
+        {% csrf_token %}
+           
+       
+        <div class="first">
+            <label for="">qn_name:</label>
+            <input type="text" name="qn_name"  required>
+
+        </div>
+        <div>
+            <label for="">qn_code:</label>
+            <input type="text" name="qn_code"  required>
+        </div>
+        <div>
+            <label for="">Answer</label>
+            <input type="text" name="answer"  required>
+        </div>
+        <div>
+            <label for="">marks</label>
+            <input type="text" name="mark"  required>
+        </div>
+        <div>
+            <label for="">Choices</label>
+            <textarea name="choice" id="choice" rows="5" required>
+
+            </textarea>
+        </div>
+
+        <button>Submit</button>
+                
+            </form>
+
+        </div>
+
+        </section>
+
+        <script>
+            let down=document.getElementsByClassName("down")
+            let bottom=document.getElementsByClassName("bottom")
+            let a=false
+
+            function show(){
+                a=!a
+                if(a==true){
+                    down[0].style='display:unset;transition:all 1s'
+                    down[1].style='display:unset ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom1;animation-duration:1s'
+                    
+                }
+                else{
+                    down[0].style='display:none ;transition:all 1s'
+                    down[1].style='display:none ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom2;animation-duration:1s'
+                   
+                }
+            }
+        </script>
+
+    
+</body>
+</html>

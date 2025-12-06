@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style/admin_nav.css'%}">
+</head>
+<body>
+       <div class="left_side">
+            <h4>EXAMIFY</h4>
+            <a href="{% url 'adminpage' %}">Total students</a>
+            <div  >
+                <p onclick="show()">Master Data <i class="fa-solid fa-greater-than bottom"></i></p>
+                <a href="{% url 'adminexam' %}" class="down">Exam</a>
+                <a href="{% url 'adminqn' %}" class="down">Question</a>
+            </div>
+        
+        </div>
+</body>
+</html>

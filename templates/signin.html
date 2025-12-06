@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'style/signin.css' %}">
+</head>
+<body>
+    
+    <section>
+    <form method="POST" action="{% url 'signin' %}">
+        {% csrf_token %}
+            <h1>Login</h1>
+    <label for="">User_name</label>
+    <input type="text" name="user_name" required>
+    <label for="">password</label>
+    <input type="password" name="password"  required>
+    <div>
+        <input type="submit" value="login">
+    </div>
+    </form>
+
+  
+    </section>
+
+
+      {% if error %}
+            <div id="msg" style="visibility: hidden;">{{error}}</div>
+            {% endif %}
+            
+
+
+            <script>
+                window.onload=function(){
+                    let error=document.getElementById('msg')
+                    if(error){
+                        alert(error.textContent)
+                    }
+                }
+            </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style/showexam.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+        <div>
+           
+                
+                <h1>{{exam.exam_name}}</h1>
+           
+            <div>
+                <h1>Timer</h1>
+                <p id="timer">4:00</p>
+            </div>
+            
+        </div>
+       
+
+       <form method="POST" id="examform" action="{% url 'showexam'  exam.id  %}">
+        {% csrf_token %}
+        {% for i in questions %}
+         <h4>{{ forloop.counter}}.{{i.question_name}}</h4>
+         {% for j in i.choices %}
+         <div>
+             <input type="radio" name="answer_{{i.id}}" id="answer"  value="{{j}}" required >
+             <label for="answer" >{{j}}</label>
+         </div>
+        {% endfor %}
+         {% endfor %}
+        <div class="last">
+        
+        <button type="submit">submit</button>
+        <a href="{% url 'exam' %}">exit</a>
+       </div>
+       </form>
+       
+    </section>
+
+
+
+
+
+
+
+
+<!-- 
+<script>
+    let time = 4 * 60; // 4 minutes in seconds
+    let timerDisplay = document.getElementById("timer");
+    let examForm = document.getElementById("examForm");
+
+    let countdown = setInterval(() => {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+
+        if (time <= 0) {
+            clearInterval(countdown);
+            alert("Time's up! Auto-submitting your exam.");
+            examForm.submit(); // Auto submit form
+        }
+
+        time--;
+    }, 1000);
+</script> -->
+    
+</body>
+</html>

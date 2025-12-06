@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style/result.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <section>
+    {% include 'user_nav.html' %}
+<div class="right_side">
+  
+  <h2>Exam Result:</h2>
+
+{% for i in exam %}
+<div>
+
+<p>Exam: {{ i.exam.exam_name }}</p>
+<p>Marks: {{ i.obtained_marks}} / {{ i.total_marks }}</p>
+<p>Percentage: {{ i.percentage }}%</p>
+<p>date:{{i.attempted_at|date:'Y-m-d'}}</p>
+{% if i.pass_status %}
+  <h3 >result: <span style="color:green;">PASS ✅</span></h3>
+{% else %}
+  <h3 >result: <span style="color:red;">FAIL ❌</span>
+    </h3>
+{% endif %}
+
+<p>Wallet Balance: ₹{{ balance }}</p>
+</div>
+{% endfor %}
+</div>
+  </section>
+
+
+</body>
+</html>

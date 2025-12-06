@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exam_page</title>
+    <link rel="stylesheet" href="{% static 'style/exam.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+      {% include 'user_nav.html' %}
+        <div class="right_side"  style='background-image: url("https://img.freepik.com/free-vector/hand-drawn-college-entrance-exam-illustration_23-2150359350.jpg?semt=ais_hybrid&w=740&q=80"); background-size: cover; '>
+           {% for i in exam %}
+            <div class="box box1">
+              
+                <h3><span>Course :</span>{{i.exam_name}}</h3>
+                {% for j in student %}
+                <p><span>Achieve a Recognition:</span>{{j.collect_money}}</p>
+                {% endfor %}
+                <p><span>Entry Fee:{{i.exam_amount}}</span></p>
+                <div><button><a href="{% url 'showexam' i.id %}">Start Exam</a></button></div>
+          
+
+            </div>
+          {% endfor %}
+        </div>
+    </section>
+</body>

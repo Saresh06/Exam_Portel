@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+      <link rel="stylesheet" href="{% static 'style/signup.css' %}">
+</head>
+<body>
+  
+    <section>
+        <form method="POST"  action="{% url  'signup'  %}" style=" padding: 30px">
+
+            {% csrf_token %}
+
+            <h1>REGISTER</h1>
+            <label for="">User_name:</label>
+            <input type="text" name="username" required>
+            <label for="">First_name:</label>
+            <input type="text" name="f_name"  required>
+            <label for="">email:</label>
+            <input type="email" name="email"  required>
+            <label for="">password:</label>
+            <input type="password" name="password" required>
+
+            <div>
+                <div>
+                    <h4>Role:</h4>
+                    <input type="radio" name="role" id="student" value="student" required>
+                    <label for="student">Students</label>
+                </div>
+                <input type="submit"  value="REGISTER" name="" id="">
+            </div>
+        </form>
+    </section>
+    
+</body>
+</html>

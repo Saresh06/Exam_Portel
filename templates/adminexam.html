@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_page</title>
+<link rel="stylesheet" href="{% static 'style/adminexam.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+          {% include 'admin_nav.html' %}
+
+        <div class="right_side">
+            <div>
+                <button><a href="{% url 'adexamdetail' %}">Add Exam</a>
+                </button>
+            </div>
+            <div class="container" name="adminpage">
+                
+                {% for i in exam1 %}
+                <div class="box box1" >
+                <h3>Exam_name:<span>{{i.exam_name}}</span></h3>
+                
+                <p>Starttime: <span>{{i.start_time}}</span></p>
+                <p>Endtime:<span>{{i.end_time}}</span></p>
+                <p>Description: <span>{{i.description}}</span></p>
+                <p>exam_amount: <span>{{i.exam_amount}}</span></p>
+                <label for="">select the questions:</label>
+                
+                <select name="question" id="qn" multiple>
+                    {% for j in i.question_code %}
+                    <option value="{{j}}">{{j}}</option>
+                    {% endfor %}
+                </select>
+                <div style="width:100%;display: flex; justify-content: center;">
+                        <button style=" width:50%;border:none;background-color: #6B705C;padding:10px;border-radius: 10px; font-size: 18px;"><a style="text-decoration: none;color:#F7F7F7" href="{% url 'updateexam' i.id %}">update</a></button>
+                </div>
+                 
+                </div>
+                {% endfor %}
+                
+                
+            </div>
+                
+            </div>
+           
+           
+
+        </div>
+    </section>
+
+        <script>
+            let down=document.getElementsByClassName("down")
+            let bottom=document.getElementsByClassName("bottom")
+            let a=false
+
+            function show(){
+                a=!a
+                if(a==true){
+                    down[0].style='display:unset;transition:all 1s'
+                    down[1].style='display:unset ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom1;animation-duration:1s'
+                    
+                }
+                else{
+                    down[0].style='display:none ;transition:all 1s'
+                    down[1].style='display:none ;transition:all 1s'
+                     bottom[0].style='animation-name:bottom2;animation-duration:1s'
+                   
+                }
+            }
+        </script>
+
+    
+</body>
+</html>

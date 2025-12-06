@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <section>
+       {% include 'user_nav.html' %}
+    <div class="right_side">
+    <h1>Hello {{user.student_name}} !</h1>
+    <form method="POST" action="{% url 'profile' %}">
+        {% csrf_token %}
+           <h1>{{first_letter}}</h1> 
+        {% if user %}
+        <div class="first">
+            <label for="">Name:</label>
+            <input type="text" name="name" value="{{user.student_name}}" required>
+
+        </div>
+        <div>
+            <label for="">Email:</label>
+            <input type="email" name="email" value="{{user.email}}" required>
+        </div>
+        <div>
+            <label for="">Mobile No:</label>
+            <input type="number" name="number"  value="{{user.mobile}}"required>
+        </div>
+        <button>Submit</button>
+
+        {% endif %}
+    </form>
+    </div>
+   </section>
+</body>
+</html>

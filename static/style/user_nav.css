@@ -1,0 +1,37 @@
+.left_side{
+    min-height:100% ;
+    width:20%;
+    display: flex;
+    flex-direction: column;
+    padding:90px 15px;
+    font-size: 1.7rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B4DEBD;
+
+}
+.left_side>h4{
+     font-size: 2.5rem;
+     cursor: pointer;
+}
+
+.left_side a{
+    text-decoration: none;
+    padding:20px 10px;
+    width:90%;
+    color:black;
+    border-bottom: 2px solid white;
+    border-radius:5px ;
+    transition: all 1s;
+    
+   
+}
+.left_side a:hover{
+    background-color: #80A1BA;
+    color:white;
+    border-radius:15px ;
+     border-bottom: 2px solid black;
+}
+a>i{
+ margin-right: 15px;
+}

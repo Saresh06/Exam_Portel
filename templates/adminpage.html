@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminpage</title>
+    <link rel="stylesheet" href="{% static 'style/adminpage.css' %}">
+    <script src="https://kit.fontawesome.com/16a2d7a5b2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section>
+        {% include 'admin_nav.html' %}
+
+        <div class="right_side">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th>Total Attempts</th>
+                    <th>Pass Count</th>
+                    <th>Fail Count</th>
+                    <th>Action</th>
+                </tr>
+                {% for i in info %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.balance}}</td>
+                    <td>{{i.total_attempts}}</td>
+                    <td>{{i.pass_count}}</td>
+                    <td>{{i.fail_count}}</td>
+                    <td> <a href="{% url 'delete_student' i.id %}" onclick="return confirm('Delete this student?');">
+                Delete
+            </a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </section>
+
+    <script>
+        let down = document.getElementsByClassName("down")
+        let bottom = document.getElementsByClassName("bottom")
+        let a = false
+
+        function show() {
+            a = !a
+            if (a == true) {
+                down[0].style = 'display:unset;transition:all 1s'
+                down[1].style = 'display:unset ;transition:all 1s'
+                bottom[0].style = 'animation-name:bottom1;animation-duration:1s'
+
+            }
+            else {
+                down[0].style = 'display:none ;transition:all 1s'
+                down[1].style = 'display:none ;transition:all 1s'
+                bottom[0].style = 'animation-name:bottom2;animation-duration:1s'
+
+            }
+        }
+    </script>
+</body>
+
+</html>
