@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -105,6 +105,14 @@ DATABASES ={
 }
 
 
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default="postgresql://exam_portel_db_ol4d_user:MID6GMBHezyY3TgOjVxnv7ghyhaWrXQH@dpg-d4qq8aidbo4c73c0g6b0-a.singapore-postgres.render.com/exam_portel_db_ol4d",
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
