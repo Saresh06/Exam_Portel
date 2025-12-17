@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn Exam_portel.wsgi
+web: gunicorn Exam_portel.wsgi:application
