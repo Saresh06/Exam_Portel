@@ -17,11 +17,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+RAILWAY_PUBLIC_DOMAIN = os.environ.get('RAILWAY_PUBLIC_DOMAIN')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app', '.up.railway.app']
 
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+if RAILWAY_PUBLIC_DOMAIN:
+    ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
+
+# HTTPS forms (login, etc.) on Render/Railway — add your live URLs here if needed
+CSRF_TRUSTED_ORIGINS = []
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
+if RAILWAY_PUBLIC_DOMAIN:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RAILWAY_PUBLIC_DOMAIN}")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +41,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["SECRET_KEY"]
+# On Render, set SECRET_KEY in Environment Variables. Locally, set it in .env or use the fallback.
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-dev-only-do-not-use-on-render")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
@@ -92,17 +103,25 @@ WSGI_APPLICATION = 'Exam_portel.wsgi.application'
 #     }
 # }
 
-DATABASES ={
-     'default': {
-          'ENGINE':'django.db.backends.postgresql_psycopg2',
-          'NAME':os.getenv("NAME"),
-          'USER':os.getenv("USER"),
-          'PASSWORD':os.getenv("PASSWORD"),
-          'HOST':os.getenv("HOST"),
-          'PORT':os.getenv("PORT")     
-     }
-
-}
+# Railway provides DATABASE_URL; Render/local use NAME, USER, PASSWORD, HOST, DB_PORT
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": os.getenv("NAME"),
+            "USER": os.getenv("USER"),
+            "PASSWORD": os.getenv("PASSWORD"),
+            "HOST": os.getenv("HOST"),
+            "PORT": os.getenv("DB_PORT", "5432"),
+        }
+    }
 
 
 
